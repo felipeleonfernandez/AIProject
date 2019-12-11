@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
-import java.awt.image.ImageObserver;
 import javax.swing.*;
 
 public class ImagePanel extends JFrame {
@@ -191,7 +190,7 @@ public class ImagePanel extends JFrame {
 		
 		
 		
-		//	No estoy seguro de si es necesario quitar el c�digo a continuaci�n 
+		//	No estoy seguro de si es necesario quitar el código a continuación 
 		/*@Override
 		public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
 			if((infoflags & ImageObserver.ALLBITS) != 0) {
