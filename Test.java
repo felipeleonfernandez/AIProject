@@ -4,11 +4,14 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		ArrayList<String> minimumPath = new ArrayList<String>();
+		MapRepresentation mapita=new MapRepresentation();
+		Graph graph = mapita.getEstaciones();
+		Node origen=graph.getNode("Ochanomizu");
+		Node destino=graph.getNode("Ebisu");
+		mapita.getF(origen, destino);
 		
-		minimumPath.add("Ikebukuro");
-		minimumPath.add("Otsuka");
-		minimumPath.add("Sugamo");
+		ArrayList<String> minimumPath = mapita.getCaminoMinimo();
+		System.out.println(minimumPath);
 		
 		ImagePanel ip = new ImagePanel();
 		ip.mainPanel.setMinimumPath(minimumPath);
