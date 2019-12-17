@@ -2,64 +2,54 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
 import java.util.ArrayList;
-
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 
 public class ImagePanel extends JFrame {
-	
+
 	Panel mainPanel = new Panel();
 	String route = "C:\\Users\\Felipe\\Programas\\workspace-eclipse\\IA-GUI\\src\\metro.PNG";
 	Image img = Toolkit.getDefaultToolkit().getImage(route);
-
+	
 	public ImagePanel() {
-		setTitle("Proyecto IA 2019 - Metro Tokio");
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setVisible(true);
-		setResizable(false);
-		
-		prepareImage(img, mainPanel);
-		getContentPane().add(mainPanel, BorderLayout.CENTER);
+		this.setTitle("Proyecto IA 2019 - Metro Tokio");
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		this.setResizable(false);
 
-		setSize(new Dimension(575, 541));
-		setLocationRelativeTo(null);	//	Si se le pasa el valor null se posiciona en el centro de la pantalla
-		
+		this.prepareImage(img, mainPanel);
+		this.getContentPane().add(mainPanel, BorderLayout.CENTER);
+
+		this.setSize(new Dimension(575, 541));
+		this.setLocationRelativeTo(null);	//	Si se le pasa el valor null se posiciona en el centro de la pantalla
+
 		//	Posible solución para coger origen y destino
 		this.add(mainPanel);
 		mainPanel.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mousePressed(MouseEvent e) {
-		        System.out.println(e.getX() + "," + e.getY());
-		    }
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println(e.getX() + "," + e.getY());
+			}
 		});
-		
+
 	}
 
 	class Panel extends JPanel {
 		private ArrayList<Station> allStations;
 		private ArrayList<String> minimumPath; 
-		
+
 		public void setMinimumPath(ArrayList<String> minimumPath) {
 			this.minimumPath = minimumPath;
 			allStations = new ArrayList<Station>();
 		}
-		
+
 		@Override
 		public void paint(Graphics g) {
 			g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-			
 			int circleSize = 17;
-						
-			//	LÍNEA VERDE
-			//	Instancias de los objetos (círculos) a dibujar
-			Graphics2D g2 = (Graphics2D) g;
-			float[] hsb = Color.RGBtoHSB(102, 152, 51, null);
-			float hue = hsb[0]; 
-			float saturation = hsb[1];
-			float brightness = hsb[2];
-			g2.setColor(Color.getHSBColor(hue, saturation, brightness));
-			
+
 			Station ikebukuro = new Station("Ikebukuro", 215-10, 73-10, circleSize, circleSize);
 			allStations.add(ikebukuro);
 			Station otsuka = new Station("Otsuka", 279-10, 73-10, circleSize, circleSize);
@@ -80,12 +70,16 @@ public class ImagePanel extends JFrame {
 			allStations.add(ueno);
 			Station okachimachi = new Station("Okachimachi", 412-10, 211-10, circleSize, circleSize);
 			allStations.add(okachimachi);
+			Station akihabara = new Station("Akihabara", 412-10, 238-10, circleSize, circleSize);
+			allStations.add(akihabara);
 			Station akihabaraA = new Station("AkihabaraA", 412-10, 238-10, circleSize, circleSize);
 			allStations.add(akihabaraA);
 			Station akihabaraV = new Station("AkihabaraV", 412-10, 238-10, circleSize, circleSize);
 			allStations.add(akihabaraV);
 			Station kanda = new Station("Kanda", 412-10, 277-10, circleSize, circleSize);
 			allStations.add(kanda);
+			Station tokyo = new Station("Tokyo", 412-10, 313-10, circleSize, circleSize);
+			allStations.add(tokyo);
 			Station tokyoV = new Station("TokyoV", 412-10, 313-10, circleSize, circleSize);
 			allStations.add(tokyoV);
 			Station tokyoR = new Station("TokyoR", 412-10, 313-10, circleSize, circleSize);
@@ -126,7 +120,17 @@ public class ImagePanel extends JFrame {
 			allStations.add(shinjuku);
 			Station yoyogi = new Station("Yoyogi", 118-10, 282-10, circleSize, circleSize);
 			allStations.add(yoyogi);
-			
+
+
+			//	LÍNEA VERDE
+			//	Instancias de los objetos (círculos) a dibujar
+			Graphics2D g2 = (Graphics2D) g;
+			float[] hsb = Color.RGBtoHSB(102, 152, 51, null);
+			float hue = hsb[0]; 
+			float saturation = hsb[1];
+			float brightness = hsb[2];
+			g2.setColor(Color.getHSBColor(hue, saturation, brightness));
+
 			//	Dibujar círculos
 			g2.draw(ikebukuro.getEllipseStation());			
 			g2.draw(otsuka.getEllipseStation());
@@ -159,7 +163,7 @@ public class ImagePanel extends JFrame {
 			g2.draw(shinOkubo.getEllipseStation());
 			g2.draw(takadanobaba.getEllipseStation());
 			g2.draw(mejiro.getEllipseStation());
-			
+
 			//	Rellenar círculos
 			g2.fill(ikebukuro.getEllipseStation());			
 			g2.fill(otsuka.getEllipseStation());
@@ -192,12 +196,12 @@ public class ImagePanel extends JFrame {
 			g2.fill(shinOkubo.getEllipseStation());
 			g2.fill(takadanobaba.getEllipseStation());
 			g2.fill(mejiro.getEllipseStation());
-			
-			
+
+
 			//	LÍNEA AMARILLA
 			Graphics2D g3 = (Graphics2D) g;
 			g2.setColor(Color.ORANGE);
-			
+
 			Station shinjukuA = new Station("ShinjukuA", 75-10, 249-10, circleSize, circleSize);
 			allStations.add(shinjukuA);
 			Station yoyogiA = new Station("YoyogiA", 75-10, 283-10, circleSize, circleSize);			
@@ -218,7 +222,7 @@ public class ImagePanel extends JFrame {
 			allStations.add(ochanomizuA);
 			Station ochanomizu = new Station("Ochanomizu", 284-10, 238-10, circleSize, circleSize);
 			allStations.add(ochanomizu);
-			
+
 			g3.draw(shinjukuA.getEllipseStation());
 			g3.draw(yoyogiA.getEllipseStation());
 			g3.draw(sendagaya.getEllipseStation());
@@ -228,7 +232,7 @@ public class ImagePanel extends JFrame {
 			g3.draw(iidabashi.getEllipseStation());
 			g3.draw(suidobashi.getEllipseStation());
 			g3.draw(ochanomizuA.getEllipseStation());
-			
+
 			g3.fill(shinjukuA.getEllipseStation());
 			g3.fill(yoyogiA.getEllipseStation());
 			g3.fill(sendagaya.getEllipseStation());
@@ -238,42 +242,47 @@ public class ImagePanel extends JFrame {
 			g3.fill(iidabashi.getEllipseStation());
 			g3.fill(suidobashi.getEllipseStation());
 			g3.fill(ochanomizuA.getEllipseStation());
-			
-			
+
+
 			//	LÍNEA ROJA
 			Graphics2D g4 = (Graphics2D) g;
 			g4.setColor(Color.red);
-			
+
 			Station shinjukuR = new Station("ShinjukuR", 95-10, 249-10, circleSize, circleSize);
 			allStations.add(shinjukuR);
 			Station ochanomizuR = new Station("OchanomizuR", 303-10, 218-10, circleSize, circleSize);
 			allStations.add(ochanomizuR);
-			
+
 			g4.draw(shinjukuR.getEllipseStation());
 			g4.draw(ochanomizuR.getEllipseStation());
-			
+
 			g4.fill(shinjukuR.getEllipseStation());
 			g4.fill(ochanomizuR.getEllipseStation());
-			
+
 
 			Graphics2D g5 = (Graphics2D) g;
-			
+
 			float[] hsb1 = Color.RGBtoHSB(0, 128, 255, null);
 			float hue1 = hsb1[0]; 
 			float saturation1 = hsb1[1];
 			float brightness1 = hsb1[2];
 			g5.setColor(Color.getHSBColor(hue1, saturation1, brightness1));
-			
+
 			ArrayList<Ellipse2D.Double> minimumPathEllipse = new ArrayList<Ellipse2D.Double>();
-						
+
 			for(int i=0; i<minimumPath.size(); i++) {
 				for(int j=0; j<allStations.size(); j++) {
 					if(minimumPath.get(i).equals(allStations.get(j).getName())) {
 						minimumPathEllipse.add(allStations.get(j).getEllipseStation());
-						if(allStations.get(j).getName().equals("TokyoV") || allStations.get(j).getName().equals("TokyoR")) {
+						
+						//System.out.println(minimumPath.get(i) + " == " + allStations.get(j).getName());
+						//System.out.println(minimumPath.get(i).equals(allStations.get(j).getName()));
+						
+						//	Si no hay diferencia entre las líneas de una misma estación se iluminan todas
+						if(allStations.get(j).getName().equals("TokyoV") || allStations.get(j).getName().equals("TokyoR") || allStations.get(j).getName().equals("Tokyo")) {
 							g5.draw(tokyoV.getEllipseStation());
 							g5.fill(tokyoV.getEllipseStation());
-						}else if(allStations.get(j).getName().equals("AkihabaraV") || allStations.get(j).getName().equals("AkihabaraA")) {
+						}else if(allStations.get(j).getName().equals("AkihabaraV") || allStations.get(j).getName().equals("AkihabaraA") || allStations.get(j).getName().equals("Akihabara")) {
 							g5.draw(akihabaraA.getEllipseStation());
 							g5.fill(akihabaraA.getEllipseStation());
 						}else if(allStations.get(j).getName().equals("Shinjuku")) {
@@ -301,7 +310,8 @@ public class ImagePanel extends JFrame {
 				}
 			}
 		}
-		
+
+		/*
 		//	No estoy seguro de si es necesario quitar el código a continuación 
 		/*@Override
 		public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
@@ -312,5 +322,19 @@ public class ImagePanel extends JFrame {
 			return true;
 		}*/
 	}
+	public static void main(String[] args) throws InterruptedException {
+		MapRepresentation mapita=new MapRepresentation();
+		Graph graph = mapita.getEstaciones();
+		Node origen=graph.getNode("Harajuku");
+		Node destino=graph.getNode("Kanda");
+		mapita.getF(origen, destino);
+
+		ArrayList<String> minimumPath = mapita.getCaminoMinimoResumido();
+		System.out.println(minimumPath);
+
+		ImagePanel ip = new ImagePanel();
+		ip.mainPanel.setMinimumPath(minimumPath);
+	}
 	
+
 }
