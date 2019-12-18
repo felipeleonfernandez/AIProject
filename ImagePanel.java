@@ -10,7 +10,7 @@ import javax.swing.*;
 public class ImagePanel extends JFrame {
 
 	Panel mainPanel = new Panel();
-	String route = "C:\\Users\\Felipe\\Programas\\workspace-eclipse\\IA-GUI\\src\\metro.PNG";
+	String route = "C:\\Users\\Felipe\\Programas\\eclipse-workspace\\IA\\src\\metro.PNG";
 	Image img = Toolkit.getDefaultToolkit().getImage(route);
 	
 	public ImagePanel() {
@@ -25,7 +25,7 @@ public class ImagePanel extends JFrame {
 		this.setSize(new Dimension(575, 541));
 		this.setLocationRelativeTo(null);	//	Si se le pasa el valor null se posiciona en el centro de la pantalla
 
-		//	Posible solución para coger origen y destino
+		//	Posible soluciÃ³n para coger origen y destino
 		this.add(mainPanel);
 		mainPanel.addMouseListener(new MouseAdapter() {
 			@Override
@@ -38,7 +38,8 @@ public class ImagePanel extends JFrame {
 
 	class Panel extends JPanel {
 		private ArrayList<Station> allStations;
-		private ArrayList<String> minimumPath; 
+		private ArrayList<String> minimumPath;
+		private ArrayList<String> minimumPathResumido;
 
 		public void setMinimumPath(ArrayList<String> minimumPath) {
 			this.minimumPath = minimumPath;
@@ -50,7 +51,7 @@ public class ImagePanel extends JFrame {
 			g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
 			int circleSize = 17;
 
-			Station ikebukuro = new Station("Ikebukuro", 215-10, 73-10, circleSize, circleSize);
+			Station ikebukuro = new Station("Ikebukuro", 213-10, 73-10, circleSize, circleSize);
 			allStations.add(ikebukuro);
 			Station otsuka = new Station("Otsuka", 279-10, 73-10, circleSize, circleSize);
 			allStations.add(otsuka);
@@ -58,80 +59,81 @@ public class ImagePanel extends JFrame {
 			allStations.add(sugamo);
 			Station komagome = new Station("Komagome", 345-10, 73-10, circleSize, circleSize);
 			allStations.add(komagome);
-			Station tabata = new Station("Tabata", 388-10, 88-10, circleSize, circleSize);
+			Station tabata = new Station("Tabata", 383-10, 88-10, circleSize, circleSize);
 			allStations.add(tabata);
-			Station nishiNippori = new Station("Nishi-Nippori", 405-10, 105-10, circleSize, circleSize);
+			Station nishiNippori = new Station("Nishi-Nippori", 403-10, 105-10, circleSize, circleSize);
 			allStations.add(nishiNippori);
-			Station nippori = new Station("Nippori", 413-10, 135-10, circleSize, circleSize);
+			Station nippori = new Station("Nippori", 405-10, 135-10, circleSize, circleSize);
 			allStations.add(nippori);
-			Station uguisudani = new Station("Uguisudani", 412-10, 161-10, circleSize, circleSize);
+			Station uguisudani = new Station("Uguisudani", 405-10, 161-10, circleSize, circleSize);
 			allStations.add(uguisudani);
-			Station ueno = new Station("Ueno", 412-10, 185-10, circleSize, circleSize);
+			Station ueno = new Station("Ueno", 405-10, 183-10, circleSize, circleSize);
 			allStations.add(ueno);
-			Station okachimachi = new Station("Okachimachi", 412-10, 211-10, circleSize, circleSize);
+			Station okachimachi = new Station("Okachimachi", 405-10, 211-10, circleSize, circleSize);
 			allStations.add(okachimachi);
-			Station akihabara = new Station("Akihabara", 412-10, 238-10, circleSize, circleSize);
+			Station akihabara = new Station("Akihabara", 405-10, 235-10, circleSize, circleSize);
 			allStations.add(akihabara);
-			Station akihabaraA = new Station("AkihabaraA", 412-10, 238-10, circleSize, circleSize);
+			Station akihabaraA = new Station("AkihabaraA", 405-10, 235-10, circleSize, circleSize);
 			allStations.add(akihabaraA);
-			Station akihabaraV = new Station("AkihabaraV", 412-10, 238-10, circleSize, circleSize);
+			Station akihabaraV = new Station("AkihabaraV", 405-10, 235-10, circleSize, circleSize);
 			allStations.add(akihabaraV);
-			Station kanda = new Station("Kanda", 412-10, 277-10, circleSize, circleSize);
+			Station kanda = new Station("Kanda", 405-10, 274-10, circleSize, circleSize);
 			allStations.add(kanda);
-			Station tokyo = new Station("Tokyo", 412-10, 313-10, circleSize, circleSize);
+			Station tokyo = new Station("Tokyo", 405-10, 310-10, circleSize, circleSize);
 			allStations.add(tokyo);
-			Station tokyoV = new Station("TokyoV", 412-10, 313-10, circleSize, circleSize);
+			Station tokyoV = new Station("TokyoV", 405-10, 310-10, circleSize, circleSize);
 			allStations.add(tokyoV);
-			Station tokyoR = new Station("TokyoR", 412-10, 313-10, circleSize, circleSize);
+			Station tokyoR = new Station("TokyoR", 405-10, 310-10, circleSize, circleSize);
 			allStations.add(tokyoR);
-			Station yurakucho = new Station("Yurakucho", 407-10, 347-10, circleSize, circleSize);
+			Station yurakucho = new Station("Yurakucho", 404-10, 341-10, circleSize, circleSize);
 			allStations.add(yurakucho);
-			Station shimbashi = new Station("Shimbashi", 384-10, 371-10, circleSize, circleSize);
+			Station shimbashi = new Station("Shimbashi", 377-10, 365-10, circleSize, circleSize);
 			allStations.add(shimbashi);
-			Station hamamatsucho = new Station("Hamamatsucho", 356-10, 395-10, circleSize, circleSize);
+			Station hamamatsucho = new Station("Hamamatsucho", 351-10, 390-10, circleSize, circleSize);
 			allStations.add(hamamatsucho);
-			Station tamachi = new Station("Tamachi", 326-10, 424-10, circleSize, circleSize);
+			Station tamachi = new Station("Tamachi", 322-10, 419-10, circleSize, circleSize);
 			allStations.add(tamachi);
-			Station shinagawa = new Station("Shinagawa", 293-10, 455-10, circleSize, circleSize);
+			Station shinagawa = new Station("Shinagawa", 290-10, 450-10, circleSize, circleSize);
 			allStations.add(shinagawa);
-			Station osaki = new Station("Osaki", 236-10, 463-10, circleSize, circleSize);
+			Station osaki = new Station("Osaki", 234-10, 455-10, circleSize, circleSize);
 			allStations.add(osaki);
-			Station gotanda = new Station("Gotanda", 199-10, 463-10, circleSize, circleSize);
+			Station gotanda = new Station("Gotanda", 197-10, 455-10, circleSize, circleSize);
 			allStations.add(gotanda);
-			Station meguro = new Station("Meguro", 165-10, 463-10, circleSize, circleSize);
+			Station meguro = new Station("Meguro", 163-10, 455-10, circleSize, circleSize);
 			allStations.add(meguro);
-			Station ebisu = new Station("Ebisu", 118-10, 440-10, circleSize, circleSize);
+			Station ebisu = new Station("Ebisu", 118-10, 435-10, circleSize, circleSize);
 			allStations.add(ebisu);
-			Station shibuya = new Station("Shibuya", 118-10, 392-10, circleSize, circleSize);
+			Station shibuya = new Station("Shibuya", 117-10, 387-10, circleSize, circleSize);
 			allStations.add(shibuya);
-			Station harajuku = new Station("Harajuku", 118-10, 348-10, circleSize, circleSize);
+			Station harajuku = new Station("Harajuku", 117-10, 343-10, circleSize, circleSize);
 			allStations.add(harajuku);
-			Station yoyogiV = new Station("YoyogiV", 118-10, 282-10, circleSize, circleSize);
+			Station yoyogiV = new Station("YoyogiV", 117-10, 277-10, circleSize, circleSize);
 			allStations.add(yoyogiV);
-			Station shinjukuV = new Station("ShinjukuV", 118-10, 249-10, circleSize, circleSize);
+			Station shinjukuV = new Station("ShinjukuV", 117-10, 245-10, circleSize, circleSize);
 			allStations.add(shinjukuV);
-			Station shinOkubo = new Station("Shin-Okubo", 118-10, 178-10, circleSize, circleSize);
+			Station shinOkubo = new Station("Shin-Okubo", 117-10, 178-10, circleSize, circleSize);
 			allStations.add(shinOkubo);
 			Station takadanobaba = new Station("Takadanobaba", 122-10, 140-10, circleSize, circleSize);
 			allStations.add(takadanobaba);
 			Station mejiro = new Station("Mejiro", 157-10, 107-10, circleSize, circleSize);
 			allStations.add(mejiro);
-			Station shinjuku = new Station("Shinjuku", 118-10, 249-10, circleSize, circleSize);
+			Station shinjuku = new Station("Shinjuku", 118-10, 245-10, circleSize, circleSize);
 			allStations.add(shinjuku);
-			Station yoyogi = new Station("Yoyogi", 118-10, 282-10, circleSize, circleSize);
+			Station yoyogi = new Station("Yoyogi", 118-10, 277-10, circleSize, circleSize);
 			allStations.add(yoyogi);
 
 
-			//	LÍNEA VERDE
-			//	Instancias de los objetos (círculos) a dibujar
+			//	LÃ�NEA VERDE
+			//	Instancias de los objetos (cÃ­rculos) a dibujar
 			Graphics2D g2 = (Graphics2D) g;
-			float[] hsb = Color.RGBtoHSB(102, 152, 51, null);
+			/*float[] hsb = Color.RGBtoHSB(102, 152, 51, null);
 			float hue = hsb[0]; 
 			float saturation = hsb[1];
 			float brightness = hsb[2];
-			g2.setColor(Color.getHSBColor(hue, saturation, brightness));
+			g2.setColor(Color.getHSBColor(hue, saturation, brightness));*/
+			g2.setColor(Color.DARK_GRAY);
 
-			//	Dibujar círculos
+			//	Dibujar cÃ­rculos
 			g2.draw(ikebukuro.getEllipseStation());			
 			g2.draw(otsuka.getEllipseStation());
 			g2.draw(sugamo.getEllipseStation());
@@ -164,7 +166,7 @@ public class ImagePanel extends JFrame {
 			g2.draw(takadanobaba.getEllipseStation());
 			g2.draw(mejiro.getEllipseStation());
 
-			//	Rellenar círculos
+			//	Rellenar cÃ­rculos
 			g2.fill(ikebukuro.getEllipseStation());			
 			g2.fill(otsuka.getEllipseStation());
 			g2.fill(sugamo.getEllipseStation());
@@ -198,29 +200,30 @@ public class ImagePanel extends JFrame {
 			g2.fill(mejiro.getEllipseStation());
 
 
-			//	LÍNEA AMARILLA
+			//	LÃ�NEA AMARILLA
 			Graphics2D g3 = (Graphics2D) g;
-			g2.setColor(Color.ORANGE);
-
-			Station shinjukuA = new Station("ShinjukuA", 75-10, 249-10, circleSize, circleSize);
+			//	g3.setColor(Color.ORANGE);
+			g3.setColor(Color.DARK_GRAY);
+			
+			Station shinjukuA = new Station("ShinjukuA", 75-10, 245-10, circleSize, circleSize);
 			allStations.add(shinjukuA);
-			Station yoyogiA = new Station("YoyogiA", 75-10, 283-10, circleSize, circleSize);			
+			Station yoyogiA = new Station("YoyogiA", 75-10, 277-10, circleSize, circleSize);			
 			allStations.add(yoyogiA);
-			Station sendagaya = new Station("Sendagaya", 141-10, 324-10, circleSize, circleSize);
+			Station sendagaya = new Station("Sendagaya", 138-10, 318-10, circleSize, circleSize);
 			allStations.add(sendagaya);
-			Station shinanomachi = new Station("Shinanomachi", 183-10, 324-10, circleSize, circleSize);
+			Station shinanomachi = new Station("Shinanomachi", 183-10, 318-10, circleSize, circleSize);
 			allStations.add(shinanomachi);
-			Station yotsuya = new Station("Yotsuya", 206-10, 304-10, circleSize, circleSize);
+			Station yotsuya = new Station("Yotsuya", 202-10, 300-10, circleSize, circleSize);
 			allStations.add(yotsuya);
-			Station ichidagaya = new Station("Ichigaya", 223-10, 288-10, circleSize, circleSize);
+			Station ichidagaya = new Station("Ichigaya", 219-10, 284-10, circleSize, circleSize);
 			allStations.add(ichidagaya);
-			Station iidabashi = new Station("Iidabashi", 240-10, 272-10, circleSize, circleSize);
+			Station iidabashi = new Station("Iidabashi", 236-10, 268-10, circleSize, circleSize);
 			allStations.add(iidabashi);
-			Station suidobashi = new Station("Suidobashi", 257-10, 256-10, circleSize, circleSize);
+			Station suidobashi = new Station("Suidobashi", 253-10, 252-10, circleSize, circleSize);
 			allStations.add(suidobashi);
-			Station ochanomizuA = new Station("OchanomizuA", 284-10, 238-10, circleSize, circleSize);
+			Station ochanomizuA = new Station("OchanomizuA", 280-10, 234-10, circleSize, circleSize);
 			allStations.add(ochanomizuA);
-			Station ochanomizu = new Station("Ochanomizu", 284-10, 238-10, circleSize, circleSize);
+			Station ochanomizu = new Station("Ochanomizu", 280-10, 234-10, circleSize, circleSize);
 			allStations.add(ochanomizu);
 
 			g3.draw(shinjukuA.getEllipseStation());
@@ -244,13 +247,14 @@ public class ImagePanel extends JFrame {
 			g3.fill(ochanomizuA.getEllipseStation());
 
 
-			//	LÍNEA ROJA
+			//	LÃ�NEA ROJA
 			Graphics2D g4 = (Graphics2D) g;
-			g4.setColor(Color.red);
+			//g4.setColor(Color.red);
+			g4.setColor(Color.DARK_GRAY);
 
-			Station shinjukuR = new Station("ShinjukuR", 95-10, 249-10, circleSize, circleSize);
+			Station shinjukuR = new Station("ShinjukuR", 95-10, 245-10, circleSize, circleSize);
 			allStations.add(shinjukuR);
-			Station ochanomizuR = new Station("OchanomizuR", 303-10, 218-10, circleSize, circleSize);
+			Station ochanomizuR = new Station("OchanomizuR", 299-10, 216-10, circleSize, circleSize);
 			allStations.add(ochanomizuR);
 
 			g4.draw(shinjukuR.getEllipseStation());
@@ -278,7 +282,7 @@ public class ImagePanel extends JFrame {
 						//System.out.println(minimumPath.get(i) + " == " + allStations.get(j).getName());
 						//System.out.println(minimumPath.get(i).equals(allStations.get(j).getName()));
 						
-						//	Si no hay diferencia entre las líneas de una misma estación se iluminan todas
+						//	Si no hay diferencia entre las lÃ­neas de una misma estaciÃ³n se iluminan todas
 						if(allStations.get(j).getName().equals("TokyoV") || allStations.get(j).getName().equals("TokyoR") || allStations.get(j).getName().equals("Tokyo")) {
 							g5.draw(tokyoV.getEllipseStation());
 							g5.fill(tokyoV.getEllipseStation());
@@ -309,10 +313,55 @@ public class ImagePanel extends JFrame {
 					}
 				}
 			}
+			
+			/*Graphics2D g6 = (Graphics2D) g;
+			g6.setColor(Color.PINK);
+
+			ArrayList<Ellipse2D.Double> minimumPathEllipseResumido = new ArrayList<Ellipse2D.Double>();
+
+			for(int i=0; i<minimumPathResumido.size(); i++) {
+				for(int j=0; j<allStations.size(); j++) {
+					if(minimumPathResumido.get(i).equals(allStations.get(j).getName())) {
+						minimumPathEllipseResumido.add(allStations.get(j).getEllipseStation());
+						
+						//System.out.println(minimumPath.get(i) + " == " + allStations.get(j).getName());
+						//System.out.println(minimumPath.get(i).equals(allStations.get(j).getName()));
+						
+						//	Si no hay diferencia entre las lÃ­neas de una misma estaciÃ³n se iluminan todas
+						if(allStations.get(j).getName().equals("TokyoV") || allStations.get(j).getName().equals("TokyoR") || allStations.get(j).getName().equals("Tokyo")) {
+							g5.draw(tokyoV.getEllipseStation());
+							g5.fill(tokyoV.getEllipseStation());
+						}else if(allStations.get(j).getName().equals("AkihabaraV") || allStations.get(j).getName().equals("AkihabaraA") || allStations.get(j).getName().equals("Akihabara")) {
+							g5.draw(akihabaraA.getEllipseStation());
+							g5.fill(akihabaraA.getEllipseStation());
+						}else if(allStations.get(j).getName().equals("Shinjuku")) {
+							g5.draw(shinjukuA.getEllipseStation());
+							g5.fill(shinjukuA.getEllipseStation());
+							g5.draw(shinjukuV.getEllipseStation());
+							g5.fill(shinjukuV.getEllipseStation());
+							g5.draw(shinjukuR.getEllipseStation());
+							g5.fill(shinjukuR.getEllipseStation());
+						}else if(allStations.get(j).getName().equals("Yoyogi")) {
+							g5.draw(yoyogiA.getEllipseStation());
+							g5.fill(yoyogiA.getEllipseStation());
+							g5.draw(yoyogiV.getEllipseStation());
+							g5.fill(yoyogiV.getEllipseStation());
+						}else if(allStations.get(j).getName().equals("Ochanomizu")){
+							g5.draw(ochanomizuA.getEllipseStation());
+							g5.fill(ochanomizuA.getEllipseStation());
+							g5.draw(ochanomizuR.getEllipseStation());
+							g5.fill(ochanomizuR.getEllipseStation());
+						}else {
+							g5.draw(allStations.get(j).getEllipseStation());
+							g5.fill(allStations.get(j).getEllipseStation());
+						}
+					}
+				}
+			}*/
 		}
 
 		/*
-		//	No estoy seguro de si es necesario quitar el código a continuación 
+		//	No estoy seguro de si es necesario quitar el cÃ³digo a continuaciÃ³n 
 		/*@Override
 		public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
 			if((infoflags & ImageObserver.ALLBITS) != 0) {
@@ -325,15 +374,16 @@ public class ImagePanel extends JFrame {
 	public static void main(String[] args) throws InterruptedException {
 		MapRepresentation mapita=new MapRepresentation();
 		Graph graph = mapita.getEstaciones();
-		Node origen=graph.getNode("Harajuku");
-		Node destino=graph.getNode("Kanda");
+		Node origen=graph.getNode("Nippori");
+		Node destino=graph.getNode("Ebisu");
 		mapita.getF(origen, destino);
 
-		ArrayList<String> minimumPath = mapita.getCaminoMinimoResumido();
-		System.out.println(minimumPath);
+		//ArrayList<String> minimumPath = mapita.getCaminoMinimo();
+		ArrayList<String> minimumPathResumido = mapita.getCaminoMinimoResumido();
+		System.out.println(minimumPathResumido);
 
 		ImagePanel ip = new ImagePanel();
-		ip.mainPanel.setMinimumPath(minimumPath);
+		ip.mainPanel.setMinimumPath(minimumPathResumido);
 	}
 	
 
